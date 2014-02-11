@@ -1,0 +1,38 @@
+# Define and create database
+uri = "datomic:free://localhost:4334/tvdata";
+Peer.createDatabase(uri);
+conn = Peer.connect(uri);
+
+# Create the schema
+schema_rdr = new FileReader("../../pugip/polera/exploring_datomic/tvdb-schema.dtm");
+schema_tx = Util.readAll(schema_rdr).get(0);
+txResult = conn.transact(schema_tx).get();
+
+# Load seed data
+data_rdr = new FileReader("../../pugip/polera/exploring_datomic/tvdb-data0.edn");
+data_tx = Util.readAll(data_rdr).get(0);
+txResult = conn.transact(data_tx).get();
+
+# Queries
+results = Peer.q("[:find ?s :where [_ :show/name ?s]]", conn.db());
+for (Object result : results) System.out.println(result);
+results = Peer.q("[:find ?actors :where [?s :show/name][?s :show/actors][?p :person/name ?actors]]", conn.db());
+
+# Load new data
+data_rdr = new FileReader("../../pugip/polera/exploring_datomic/tvdb-data1.edn");
+data_tx = Util.readAll(data_rdr).get(0);
+# Setup a "futuristic" view of our database - pre-commit
+Map result = conn.db().with(data_tx);
+db_if_we_transact = result.get(Connection.DB_AFTER);
+# Query the future
+jb_shows = Peer.q("[:find ?shows :where [?p :person/name \"J.B. Smoove\"][?s :show/actors ?p][?s :show/name ?shows]]", db_if_we_transact); 
+# Commit the transaction
+txResult = conn.transact(data_tx).get();
+# Query the base database, post-commit
+jb_shows = Peer.q("[:find ?shows :where [?p :person/name \"J.B. Smoove\"][?s :show/actors ?p][?s :show/name ?shows]]", conn.db());
+
+# All changes to the database
+results = Peer.q(
+  "[:find ?when :where [?tx :db/txInstant ?when]]",
+  conn.db());
+

@@ -1,0 +1,14 @@
+Jinja2==2.7.2
+MarkupSafe==0.18
+backports.ssl-match-hostname==3.4.0.2
+clojure-py==0.2.4
+datomic==0.1.2dev
+ipython==1.1.0
+pyRFC3339==0.1
+pyclj==0.3.0
+pytz==2013.9
+pyzmq==14.0.1
+termcolor==1.1.0
+tornado==3.2
+urllib3==1.7.1
+wsgiref==0.1.2

@@ -1,0 +1,35 @@
+[
+  {:db/id #db/id [:db.part/user -100]
+  :person/name "Larry David"}
+
+  {:db/id #db/id [:db.part/user -101]
+  :person/name "Jeff Garlin"}
+
+  {:db/id #db/id [:db.part/user -102]
+  :person/name "Cheryl Hines"}
+
+  {:db/id #db/id [:db.part/user -103]
+  :person/name "Susie Essman"}
+
+  {:db/id #db/id [:db.part/user -104]
+  :person/name "Richard Lewis"}
+
+  {:db/id #db/id [:db.part/user -105]
+  :person/name "Bob Einstein"}
+
+  {:db/id #db/id [:db.part/user -106]
+  :person/name "J.B. Smoove"}
+
+  {:db/id #db/id [:db.part/user -1000001],
+   :show/name "Curb Your Enthusiasm"
+   :show/url "http://www.hbo.com/curb-your-enthusiasm/"
+   :show/actors [#db/id [:db.part/user -100]
+                 #db/id [:db.part/user -101]
+                 #db/id [:db.part/user -102]
+                 #db/id [:db.part/user -103]
+                 #db/id [:db.part/user -104]
+                 #db/id [:db.part/user -105]
+                 #db/id [:db.part/user -106]]
+   }
+
+]

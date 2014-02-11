@@ -1,0 +1,8 @@
+[ {:db/id #db/id [:db.part/user -1000002]
+   :show/name "Four Courses with J.B. Smoove"
+   :show/url "http://www.msg.com/shows/four-courses-with-jb-smoove.html"
+   :show/actors [{:db/id #db/id[:db.part/user] :person/name "J.B. Smoove"}
+                 {:db/id #db/id[:db.part/user] :person/name "Susie Essman"}]
+ }
+
+]
