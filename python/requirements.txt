@@ -1,4 +1,4 @@
-Jinja2==2.7.2
+Jinja2==2.11.3
 MarkupSafe==0.18
 backports.ssl-match-hostname==3.4.0.2
 clojure-py==0.2.4
